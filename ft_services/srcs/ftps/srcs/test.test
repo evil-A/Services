@@ -1,0 +1,2 @@
+curl ftp://192.168.99.127:21 --ssl -k --user admin -T srcs/test.test
+curl ftp://192.168.99.127:21/test.test --ssl -k --user admin -o downloaded.test.sh
