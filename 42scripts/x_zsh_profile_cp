@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    x_zsh_profile_cp                                   :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xvan-ham <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/29 16:47:16 by xvan-ham          #+#    #+#              #
+#    Updated: 2020/10/29 16:50:04 by xvan-ham         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# Copy the .zshrc file from this directory to $HOME (AKA "~")
+# This profile adds "scripts" folder to $PATH.
+# As of 10/11/2020 v201110-1 you can use x_prompt_toggle_zshrc (to toggle the
+# use of a custom prompt), which automatically calls this script as well.
+
+#  Colors
+green=$'\e[0;92;40m'
+cyan=$'\e[0;1;36;40m'
+reset=$'\e[0m'
+
+echo -e "${green}Copying ${cyan}.zshrc${green} to $HOME.${reset}"
+cp ~/scripts/.zshrc ~
+echo -e "${green}Profile copied, restart terminal for effects to take place${reset}"

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    x_spinner2                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xvan-ham <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/11/05 19:51:03 by xvan-ham          #+#    #+#              #
+#    Updated: 2020/11/05 19:51:03 by xvan-ham         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+spinner=(Ooooo oOooo ooOoo oooOo ooooO oooOo ooOoo oOooo)
+
+
+function test(){
+	cycle &
+	pid=$!
+
+	for i in `seq 1 5`
+	do
+		sleep 1
+	done
+
+	kill $pid
+	echo ""
+}
+
+function cycle() {
+	while [ 1 ]
+	do
+		for i in "${spinner[@]}"
+		do
+			echo -ne "\r$i"
+			sleep 0.2
+		done
+	done
+}
+
+cycle

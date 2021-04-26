@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    x_spinner3                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xvan-ham <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/11/05 19:51:20 by xvan-ham          #+#    #+#              #
+#    Updated: 2020/11/05 19:51:20 by xvan-ham         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+b=$'\e[1;91m'
+rs=$'\e[0m'
+
+spinner=(" |${b}'${rs}       | " "  |${b}'${rs}      | " " |${b} .${rs}      | " " |${b}  '${rs}     | " " |  ${b} .${rs}    | " " | ${b}   '${rs}   | " " |   ${b}  .${rs}  / " " |   ${b}   '${rs}  /|" " |   ${b}    .${rs} |" " |   ${b}    '${rs}| " " |     ${b} '${rs}|  " " |   ${b}  .${rs}  | " " |  ${b}  '${rs}   | " " | ${b}  . ${rs}   | " " \\ ${b} ' ${rs}    | " "\\${b}  .${rs}      | " "|${b} ' ${rs}      | ")
+
+function other(){
+	cycle &
+	pid=$!
+
+	bash $1
+	
+	kill $pid
+	echo -e "${rs} "
+}
+
+function test(){
+	cycle &
+	pid=$!
+
+	echo "Hello"
+	sleep "$1"
+
+	kill $pid
+	echo -e "${rs} "
+}
+
+function cycle() {
+	while [ 1 ]
+	do
+		for i in "${spinner[@]}"
+		do
+			echo -ne "\r$i "
+			sleep 0.13
+		done
+	done
+}
+
+#test 6
+cycle
+#other "$1"

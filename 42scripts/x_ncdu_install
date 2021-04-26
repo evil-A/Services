@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    x_ncdu_install                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xvan-ham <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/11/06 17:46:35 by xvan-ham          #+#    #+#              #
+#    Updated: 2020/11/06 17:46:35 by xvan-ham         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#  Colors
+green=$'\e[0;92;40m'
+cyan=$'\e[0;1;36;40m'
+reset=$'\e[0m'
+
+echo -e "${green}Installing ${cyan}ncdu${green}.${reset}"
+
+brew install ncdu
+
+echo -e "${cyan}ncdu ${green}installation done.${reset}"

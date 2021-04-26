@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    x_all                                              :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xvan-ham <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/29 18:02:48 by xvan-ham          #+#    #+#              #
+#    Updated: 2020/10/29 18:02:48 by xvan-ham         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#  Colors
+green=$'\e[0;92;40m'
+green_b=$'\e[0;30;102m'
+green_d=$'\e[0;2;92;40m'
+blue=$'\e[0;34;40m'
+cyan=$'\e[0;1;36;40m'
+magenta=$'\e[0;1;95;40m'
+reset=$'\e[0m'
+
+function install() {
+	while [ "$input" != "n" ] && [ "$input" != "y" ] && [ "$input" != "N" ] && [ "$input" != "Y" ]
+		do
+			read -n1 -p "${green}Do you want to setup${cyan} $1${green}?${green_d}$3 ${magenta}(y/n)${blue} " input
+			echo "${reset}"
+		done
+	if [ "$input" = "y" ] || [ "$input" = "Y" ]
+		then
+		echo "${green}Executing: ${cyan}$2${reset}"
+		bash $2
+		echo "${green_b}Done${reset}"
+	fi
+	if [ "$input" = "n" ] || [ "$input" = "N" ]
+		then
+		echo "Skipping ${cyan}$1${reset}"
+	fi
+	input=""
+}
+
+o1=$`grep "first_time_launch=1" ~/scripts/.scripts`
+if [ "$o1" = "\$first_time_launch=1" ]
+	then
+		echo "${green}First time launch.${reset}"
+		sed -i "" "s/first_time_launch=1/first_time_launch=0/" ~/scripts/.scripts
+		install "zsh (shell) profile" "x_zsh_profile_cp" "(copies .zshrc file to home directory, adding scripts folder to Path)"
+fi
+install "brew" "x_brew_install" " (Warning, saying yes will delete current install and reinstall from scratch)"
+install "ncdu" "x_ncdu_install" "(Used to see which folders/files take up the most memory)"
+install "minikube (installation)" "x_minikube_install" ""
+install "minikube goinfre" "x_minikube_setup" ""
+
+echo -e "${green_b}\nFinished"

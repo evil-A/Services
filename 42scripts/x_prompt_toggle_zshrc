@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    x_prompt_toggle_zshrc                              :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xvan-ham <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/11/10 16:25:24 by xvan-ham          #+#    #+#              #
+#    Updated: 2020/11/10 16:25:24 by xvan-ham         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# This script toggles the .zshrc profile to use or not use the custom prompt.
+# Restart (of terminal) is needed for effects to take place.
+
+#  Colors
+green=$'\e[0;92;40m'
+green_b=$'\e[0;30;102m'
+red=$'\e[0;91;40m'
+red_b=$'\e[0;30;101m'
+magenta=$'\e[0;1;95;40m'
+reset=$'\e[0m'
+
+dir=~/scripts
+file=${dir}/.zshrc
+
+if [ "$(echo -n $(grep "custom_prompt=0" ${file}))" == "custom_prompt=0" ]
+then
+	echo "${magenta}Custom prompt${reset} is ${red}OFF${reset}"
+	find ${dir} -type f -exec sed -i '' -e "s/custom_prompt=0/custom_prompt=1/" ${file} \;
+	echo "${magenta}Custom prompt${reset} is now set to ${green_b}ON${reset}"
+elif [ "$(echo -n $(grep "custom_prompt=1" ${file}))" == "custom_prompt=1" ]
+then
+	echo "${magenta}Custom prompt${reset} is ${green}ON${reset}"
+	find ${dir} -type f -exec sed -i '' -e "s/custom_prompt=1/custom_prompt=0/" ${file} \;
+	echo "${magenta}Custom prompt${reset} is now set to ${red_b}OFF${reset}"
+fi
+bash ${dir}/x_zsh_profile_cp

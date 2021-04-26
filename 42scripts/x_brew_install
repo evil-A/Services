@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    x_brew_install                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xvan-ham <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/29 16:42:35 by xvan-ham          #+#    #+#              #
+#    Updated: 2020/10/29 19:31:02 by xvan-ham         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#  Colors
+green=$'\e[0;92;40m'
+cyan=$'\e[0;1;36;40m'
+reset=$'\e[0m'
+
+echo -e "${green}Installing ${cyan}brew${green}.${reset}"
+
+#Delete .brew folder and reinstall
+rm -rf $HOME/.brew
+git clone --depth=1 https://github.com/Homebrew/brew $HOME/.brew
+echo 'export PATH=$HOME/.brew/bin:$PATH' >> $HOME/.zshrc && source $HOME/.zshrc
+brew update
+
+echo -e "${cyan}Brew ${green}installation done.${reset}"

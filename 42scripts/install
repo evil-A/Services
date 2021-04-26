@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#  Colors
+green_b=$'\e[0;30;102m'
+reset=$'\e[0m'
+
+
+mkdir -p ~/scripts
+mv x_* ~/scripts/
+mv .git ~/scripts/
+mv .scripts ~/scripts/
+mv .zshrc ~/scripts/
+mv README.md ~/scripts/
+mv update_scripts ~/scripts/
+mv 42toolbox ~/scripts/
+rm install
+echo -e "Moved files over, attempting to delete 42_scripts folder in case it is empty."
+cd ..
+rmdir 42_scripts
+echo -e "${green_b}Finished.${reset}".
